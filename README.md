@@ -5,9 +5,9 @@ This project is the implementation of the RSA Algorithm.
 <h5>Built with: </h5>
 <img src="https://img.shields.io/badge/C%2B%2B-00599C?style=for-the-badge&logo=c%2B%2B&logoColor=white">
 
-## About
+# About
 
-- #### Prime Numbers
+- ### Prime Numbers
 
   The algorithm begins with generating a private key and a public key. For this to happen, it requires two <b>Prime Numbers</b>.
 
