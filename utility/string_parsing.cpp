@@ -44,6 +44,12 @@ string getFirstLineFromFile(string &file_name)
 {
     ifstream file(file_name);
 
+    if (!file.is_open())
+    {
+        std::cerr << "Error: Could not open file '" << file_name << "'" << std::endl;
+        return "";
+    }
+
     string line;
 
     getline(file, line);
@@ -51,4 +57,27 @@ string getFirstLineFromFile(string &file_name)
     file.close();
 
     return line;
+}
+
+vector<string> readFile(string &file_name)
+{
+
+    vector<string> result;
+
+    ifstream file(file_name);
+
+    if (!file.is_open())
+    {
+        std::cerr << "Error: Could not open file '" << file_name << "'" << std::endl;
+        return result;
+    }
+
+    string line;
+    while (std::getline(file, line))
+    {
+        result.push_back(line);
+    }
+
+    file.close();
+    return result;
 }
