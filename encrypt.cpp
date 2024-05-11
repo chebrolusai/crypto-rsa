@@ -21,7 +21,7 @@ int main(int argc, char *argv[])
 {
     /**
      * Main function which takes input arguments from the command line
-     * specifically the message file and the encryption key.
+     * specifically the message file and the encryption key file.
      * It created encrypted_file.txt with the encrypted message
      */
 
@@ -76,7 +76,7 @@ int main(int argc, char *argv[])
     // A flag which tells to add a line at the beginning of each loop
     bool newLineFlag = false;
 
-    // Parse each file line and encrypt it modular exponential
+    // Parse each file line and encrypt it using modular exponential
     for (string str : file_lines)
     {
         string temp = "";
