@@ -57,5 +57,5 @@ This project is the implementation of the RSA Algorithm.
   ```
 - Compile <b>decrypt.cpp<b> then run the following:
   ```sh
-  ./"decrypt" -ef <path to your encrypted file> -e <path to private_key.rsa>
+  ./"decrypt" -ef <path to your encrypted file> -d <path to private_key.rsa>
   ```
