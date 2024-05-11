@@ -23,11 +23,11 @@ int main(int argc, char *argv[])
         exit(1);
     }
 
-    if (strcmp(argv[1], "-m") != 0 || strcmp(argv[3], "-e") != 0)
+    if (strcmp(argv[1], "-ef") != 0 || strcmp(argv[3], "-d") != 0)
     {
         cout << argv[1] << endl
              << argv[3];
-        std::cerr << "The format accepted is -m <your message file> -e <your public encryption key>" << std::endl;
+        std::cerr << "The format accepted is -ef <your encrypted file> -d <your private encryption key>" << std::endl;
         exit(1);
     }
 
@@ -49,45 +49,31 @@ int main(int argc, char *argv[])
     string csv_line = getFirstLineFromFile(public_key_file);
     vector<long long int> keyPair = parseKeyCsvLine(csv_line);
 
-    const long long int E = keyPair[0];
+    const long long int D = keyPair[0];
     const long long int N = keyPair[1];
 
     vector<string> file_lines = readFile(message_file);
-
-    ofstream encrypted_file("encrypted_file.txt");
-
-    if (!encrypted_file.is_open())
-    {
-        cerr << "Error opening file for writing!" << endl;
-        return 1;
-    }
 
     bool newLineFlag = false;
 
     for (string str : file_lines)
     {
-        string temp = "";
 
         if (newLineFlag)
         {
-            encrypted_file << endl;
+            cout << endl;
         }
 
-        for (int i = 0; i < str.size(); i++)
+        vector<long long int> encrypted_numbers = parseEncryptedLine(str);
+
+        for (auto it : encrypted_numbers)
         {
-
-            long long int converted = int(str[i]);
-
-            long long int encryptedNumber = modExp(converted, E, N);
-
-            temp = temp + to_string(encryptedNumber) + "?";
+            long long int decrypted_number = modExp(it, D, N);
+            cout << char(decrypted_number);
         }
 
-        encrypted_file << temp;
         newLineFlag = true;
     }
-
-    encrypted_file.close();
 
     return 0;
 }

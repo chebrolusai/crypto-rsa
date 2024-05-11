@@ -81,3 +81,26 @@ vector<string> readFile(string &file_name)
     file.close();
     return result;
 }
+
+vector<long long int> parseEncryptedLine(string str)
+{
+
+    vector<long long int> result;
+
+    long long int encryptedNumber = 0;
+
+    for (int i = 0; i < str.size(); i++)
+    {
+
+        if (str[i] == '?')
+        {
+            result.push_back(encryptedNumber);
+            encryptedNumber = 0;
+            continue;
+        }
+
+        encryptedNumber = encryptedNumber * 10 + (str[i] - '0');
+    }
+
+    return result;
+}
