@@ -10,13 +10,22 @@ using namespace std;
 
 bool fileExists(string &file_path)
 {
+    /**
+     * This function returns if a file exists as a boolean
+     */
     ifstream file(file_path);
     return file.is_open();
 }
 
 int main(int argc, char *argv[])
 {
+    /**
+     * Main function which takes input arguments from the command line
+     * specifically the message file and the encryption key.
+     * It created encrypted_file.txt with the encrypted message
+     */
 
+    // Error handle the input
     if (argc != 5)
     {
         std::cerr << "Invalid number of arguments." << std::endl;
@@ -34,6 +43,7 @@ int main(int argc, char *argv[])
     string message_file = argv[2];
     string public_key_file = argv[4];
 
+    // Check for the existance of files
     if (!fileExists(message_file))
     {
         std::cerr << "The file [" << message_file << "] does not exist." << std::endl;
@@ -46,6 +56,7 @@ int main(int argc, char *argv[])
         exit(1);
     }
 
+    // Use utility functions to get encryption key
     string csv_line = getFirstLineFromFile(public_key_file);
     vector<long long int> keyPair = parseKeyCsvLine(csv_line);
 
@@ -62,8 +73,10 @@ int main(int argc, char *argv[])
         return 1;
     }
 
+    // A flag which tells to add a line at the beginning of each loop
     bool newLineFlag = false;
 
+    // Parse each file line and encrypt it modular exponential
     for (string str : file_lines)
     {
         string temp = "";
