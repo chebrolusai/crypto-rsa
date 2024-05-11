@@ -4,24 +4,9 @@
 #include <fstream>
 #include <cmath>
 #include "utility/string_parsing.cpp"
+#include "utility/math_functions.cpp"
 
 using namespace std;
-
-long long modExp(long long base, long long exp, long long mod)
-{
-    long long result = 1;
-    base = base % mod;
-    while (exp > 0)
-    {
-        if (exp & 1)
-        {
-            result = (result * base) % mod;
-        }
-        exp >>= 1;
-        base = (base * base) % mod;
-    }
-    return result;
-}
 
 bool fileExists(string &file_path)
 {
