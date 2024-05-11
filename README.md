@@ -30,3 +30,11 @@ This project is the implementation of the RSA Algorithm.
   3. The decryption key D is found using the Extended Euclidean Algorithm.
 
   4. These keys are then stored into the files <b> public_key.rsa </b> and <b> private_key.rsa </b>
+
+- ### Encryption 🔐
+
+  Given the message file and the public key file:
+
+  1. The program parses and fetches E and N from the public key file
+  2. Converts each character in the message to an encrypted character using modular exponentiation
+  3. The encrypted text is written into a file <b>encrypted.txt</b>
