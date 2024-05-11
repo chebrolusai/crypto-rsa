@@ -37,4 +37,25 @@ This project is the implementation of the RSA Algorithm.
 
   1. The program parses and fetches E and N from the public key file
   2. Converts each character in the message to an encrypted character using modular exponentiation
-  3. The encrypted text is written into a file <b>encrypted.txt</b>
+  3. The encrypted text is written into a file <b>encrypted_file.txt</b>
+
+- ### Decryption 🔓
+
+  Given the encrypted file and the private key file:
+
+  1. The program parses and fetches D and N from the public key file
+  2. Converts each character in the message to an decrypted character using modular exponentiation
+  3. The decrypted text is printed on to the console
+
+# Usage
+
+- Generate keys by running <b>generate_keys.cpp </b>
+
+- Compile <b>encrypt.cpp<b> then run the following:
+  ```sh
+  ./"encrypt" -m <path to your message file> -e <path to public_key.rsa>
+  ```
+- Compile <b>decrypt.cpp<b> then run the following:
+  ```sh
+  ./"decrypt" -ef <path to your encrypted file> -e <path to private_key.rsa>
+  ```
