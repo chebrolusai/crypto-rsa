@@ -38,11 +38,11 @@ int main(int argc, char *argv[])
         exit(1);
     }
 
-    if (strcmp(argv[1], "-m") != 0 || strcmp(argv[3], "-p") != 0)
+    if (strcmp(argv[1], "-m") != 0 || strcmp(argv[3], "-e") != 0)
     {
         cout << argv[1] << endl
              << argv[3];
-        std::cerr << "The format accepted is -m <your message file> -p <your public key>" << std::endl;
+        std::cerr << "The format accepted is -m <your message file> -e <your public encryption key>" << std::endl;
         exit(1);
     }
 
@@ -69,11 +69,24 @@ int main(int argc, char *argv[])
 
     vector<string> file_lines = readFile(message_file);
 
-    FILE *encrypted_file = fopen("encrypted_file.txt", "wt");
+    ofstream encrypted_file("encrypted_file.txt");
+
+    if (!encrypted_file.is_open())
+    {
+        cerr << "Error opening file for writing!" << endl;
+        return 1;
+    }
+
+    bool newLineFlag = false;
 
     for (string str : file_lines)
     {
         string temp = "";
+
+        if (newLineFlag)
+        {
+            encrypted_file << endl;
+        }
 
         for (int i = 0; i < str.size(); i++)
         {
@@ -85,10 +98,11 @@ int main(int argc, char *argv[])
             temp = temp + char(encryptedNumber);
         }
 
-        fprintf(encrypted_file, "%s\n", temp.c_str());
+        encrypted_file << temp;
+        newLineFlag = true;
     }
 
-    fclose(encrypted_file);
+    encrypted_file.close();
 
     return 0;
 }
