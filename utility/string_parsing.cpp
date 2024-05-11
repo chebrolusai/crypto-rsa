@@ -8,6 +8,10 @@ using namespace std;
 
 vector<long long int> parseKeyCsvLine(string csv_line)
 {
+    /**
+     * This function parses a csv line with 2 comma separated values.
+     * This function is very specific for the private and public key file
+     */
 
     vector<long long int> result;
 
@@ -42,6 +46,10 @@ vector<long long int> parseKeyCsvLine(string csv_line)
 
 string getFirstLineFromFile(string &file_name)
 {
+    /**
+     * This function returns the first line from a file
+     */
+
     ifstream file(file_name);
 
     if (!file.is_open())
@@ -61,6 +69,11 @@ string getFirstLineFromFile(string &file_name)
 
 vector<string> readFile(string &file_name)
 {
+
+    /**
+     * This function reads an entire file and
+     * returns its content in  vector of type string
+     */
 
     vector<string> result;
 
@@ -84,6 +97,12 @@ vector<string> readFile(string &file_name)
 
 vector<long long int> parseEncryptedLine(string str)
 {
+    /**
+     * This function parses a string using '?' as the delimiter
+     * and returns a vector of type long long int.
+     * This is a specific function only for parsing the encrypted file
+     * created by this program
+     */
 
     vector<long long int> result;
 
